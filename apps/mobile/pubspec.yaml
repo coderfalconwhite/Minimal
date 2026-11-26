@@ -1,0 +1,41 @@
+name: mobile
+description: Cross-platform mobile application (Flutter + Dart). See ../../AGENTS.md and ../../docs/02_FRONTEND/FRONTEND_ARCHITECTURE.md.
+publish_to: "none"
+version: 0.0.1+1
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+  # TODO(part-1): pin against the installed Flutter/Dart SDK once the dev
+  # environment is identified, and validate dependency versions together
+  # (ADR-0004) before the first real commit.
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management (ADR-0004)
+  flutter_riverpod: ^2.5.1
+
+  # Navigation (ADR-0004)
+  go_router: ^14.2.0
+
+  # Networking (ADR-0005)
+  dio: ^5.4.0
+
+  # Auth & database client (ADR-0002) — anon key only; NEVER service_role
+  supabase_flutter: ^2.5.0
+
+  # Secure local session storage (ADR-0004)
+  flutter_secure_storage: ^9.2.2
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/

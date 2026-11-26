@@ -1,0 +1,26 @@
+name: supabase-checks
+
+# Part 1 foundation checks: environment verification + migration checks +
+# RLS tests. Runs against a disposable Supabase project only — never
+# production (AGENTS.md section 7).
+# Docs: docs/08_TESTING/TEST_STRATEGY.md
+
+on:
+  push:
+    paths: ["supabase/**", "scripts/**"]
+  pull_request:
+    paths: ["supabase/**", "scripts/**"]
+  workflow_dispatch:
+
+jobs:
+  env-and-migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Environment verification
+        run: bash scripts/verify_env.sh
+      # TODO(part-1): once a CI Supabase project (or local container) is
+      # configured, add:
+      #   supabase db push --dry-run      # migrations are valid & ordered
+      #   supabase db reset               # fresh-DB apply check
+      #   psql ... -f supabase/tests/rls_policies_test.sql  # allowed+denied

@@ -1,0 +1,31 @@
+name: backend-checks
+
+# Part 1 foundation checks: FastAPI linting + endpoint/unit tests.
+# Docs: docs/08_TESTING/TEST_STRATEGY.md
+
+on:
+  push:
+    paths: ["backend/**"]
+  pull_request:
+    paths: ["backend/**"]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Install dependencies
+        run: uv sync
+      - name: Lint
+        run: uv run ruff check .
+      - name: Tests
+        run: uv run pytest -v
+      # JWT verification tests (forged/expired/wrong-issuer/wrong-audience)
+      # are added with the verification implementation in Part 1.

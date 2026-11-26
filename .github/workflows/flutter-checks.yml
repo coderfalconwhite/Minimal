@@ -1,0 +1,31 @@
+name: flutter-checks
+
+# Part 1 foundation checks: Flutter formatting and static analysis + tests.
+# Docs: docs/08_TESTING/TEST_STRATEGY.md
+
+on:
+  push:
+    paths: ["apps/mobile/**"]
+  pull_request:
+    paths: ["apps/mobile/**"]
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Formatting
+        run: dart format --set-exit-if-changed --output=none .
+      - name: Static analysis
+        run: flutter analyze --fatal-infos
+      - name: Tests
+        run: flutter test
