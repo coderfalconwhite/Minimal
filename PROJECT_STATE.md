@@ -74,7 +74,7 @@ None yet. Baseline rules established in `AGENTS.md` §7 (JWKS verification, no s
 
 ## Recent Git Changes
 
-- Initial scaffold commit (this repository zip). No GitHub remote configured yet.
+- Initial scaffold published to `https://github.com/coderfalconwhite/Minimal` on `main`.
 
 ## Next Recommended Tasks
 

@@ -19,3 +19,4 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versio
 ### Notes
 
 - No application code yet. App-specific features, schema, and endpoints wait for the app plan and reference screens in `reference_material/`.
+- Initial repository scaffold published to `https://github.com/coderfalconwhite/Minimal` on `main` (2026-11-27).
